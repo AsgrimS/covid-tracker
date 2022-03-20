@@ -1,11 +1,16 @@
 import { useState } from "react"
-import MapChart from "../components/MapChart"
 import ReactTooltip from "react-tooltip"
+
+import { CountryInfoData } from "../types"
+import MapChart from "../components/MapChart"
 import CountryInfo from "../components/CountryInfo"
 
 const WorldMap = () => {
   const [countryName, setCountryName] = useState("")
-  const [selectedCountry, setSelectedCountry] = useState("")
+  const [selectedCountry, setSelectedCountry] = useState<CountryInfoData>({
+    ISO_A3: "",
+    NAME: "",
+  })
 
   return (
     <>
@@ -14,7 +19,7 @@ const WorldMap = () => {
         setSelectedCountry={setSelectedCountry}
       />
       <ReactTooltip>{countryName}</ReactTooltip>
-      <CountryInfo countryName={selectedCountry} />
+      <CountryInfo countryInfo={selectedCountry} />
     </>
   )
 }

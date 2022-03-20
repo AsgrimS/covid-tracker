@@ -6,12 +6,12 @@ import {
   Geography,
 } from "react-simple-maps"
 
-const geoUrl =
-  "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json"
+import { CountryInfoData } from "../types"
+import { geoUrl } from "../settings"
 
 interface MapChartProps {
   setCountryName: (value: string) => void
-  setSelectedCountry: (value: string) => void
+  setSelectedCountry: (value: CountryInfoData) => void
 }
 
 const MapChart = ({ setCountryName, setSelectedCountry }: MapChartProps) => {
@@ -26,8 +26,8 @@ const MapChart = ({ setCountryName, setSelectedCountry }: MapChartProps) => {
                   key={geo.rsmKey}
                   geography={geo}
                   onClick={() => {
-                    const { NAME } = geo.properties
-                    setSelectedCountry(NAME)
+                    const { NAME, ISO_A3 } = geo.properties
+                    setSelectedCountry({ NAME, ISO_A3 })
                   }}
                   onMouseEnter={() => {
                     const { NAME } = geo.properties

@@ -1,19 +1,18 @@
-import axios from "axios"
-import { useQuery } from "react-query"
 import { useEffect } from "react"
+import { useQuery } from "react-query"
 
-const fetchCountryInfo = async (countryName: string): Promise<number> => {
-  const response = await axios.get(
-    `https://disease.sh/v3/covid-19/countries/${countryName}?strict=true`
-  )
-  console.log("click")
-  return response.data.cases
+import { CountryInfoData } from "../types"
+import { fetchCountryInfo } from "../requests"
+import styled from "styled-components"
+
+interface CountryInfoProps {
+  countryInfo: CountryInfoData
 }
 
-const CountryInfo = ({ countryName }: { countryName: string }) => {
+const CountryInfo = ({ countryInfo }: CountryInfoProps) => {
   const { data, refetch } = useQuery(
-    ["countryInfo", countryName],
-    () => fetchCountryInfo(countryName),
+    ["countryInfo", countryInfo.ISO_A3],
+    () => fetchCountryInfo(countryInfo.ISO_A3),
     {
       refetchOnWindowFocus: false,
       refetchOnMount: false,
@@ -22,17 +21,22 @@ const CountryInfo = ({ countryName }: { countryName: string }) => {
   )
 
   useEffect(() => {
-    if (countryName) {
+    console.log(countryInfo)
+    if (countryInfo.ISO_A3) {
       refetch().catch(console.error)
     }
-  }, [countryName])
+  }, [countryInfo])
 
   return (
-    <div>
-      {countryName}
-      {data && <h3>{data}</h3>}
-    </div>
+    <InfoBox>
+      {countryInfo.NAME}
+      {data && <h3>{data.cases}</h3>}
+    </InfoBox>
   )
 }
+
+const InfoBox = styled.div`
+  color: whitesmoke;
+`
 
 export default CountryInfo
