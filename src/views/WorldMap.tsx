@@ -42,8 +42,8 @@ const WorldMap = () => {
       </MapChartContainer>
       <ReactTooltip>{countryName}</ReactTooltip>
       <CountryInfo
-        countryInfo={selectedCountry}
-        setShowInfo={setShowInfo}
+        countryData={selectedCountry}
+        setShow={setShowInfo}
         show={showInfo}
       />
     </>

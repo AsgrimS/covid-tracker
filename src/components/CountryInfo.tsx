@@ -17,17 +17,17 @@ import { CountryInfoData } from "../types"
 import { fetchCountryInfo } from "../requests"
 
 interface CountryInfoProps {
-  countryInfo: CountryInfoData
-  setShowInfo: (value: boolean) => void
+  countryData: CountryInfoData
+  setShow: (value: boolean) => void
   show: boolean
 }
 
-const CountryInfo = ({ countryInfo, setShowInfo, show }: CountryInfoProps) => {
+const CountryInfo = ({ countryData, setShow, show }: CountryInfoProps) => {
   const [ActiveCasesRatioText, setActiveCasesRatioText] = useState("")
 
   const { data, refetch, isLoading, isSuccess, isError } = useQuery(
-    ["countryInfo", countryInfo.ISO_A3],
-    () => fetchCountryInfo(countryInfo.ISO_A3),
+    ["countryInfo", countryData.ISO_A3],
+    () => fetchCountryInfo(countryData.ISO_A3),
     {
       enabled: false,
       retry: 1
@@ -44,7 +44,7 @@ const CountryInfo = ({ countryInfo, setShowInfo, show }: CountryInfoProps) => {
   }
 
   useEffect(() => {
-    if (!countryInfo.NAME) return
+    if (!countryData.NAME) return
     refetch()
       .then(({ isSuccess, data }) => {
         if (!isSuccess) return
@@ -53,13 +53,13 @@ const CountryInfo = ({ countryInfo, setShowInfo, show }: CountryInfoProps) => {
         )
       })
       .catch(console.error)
-  }, [countryInfo.NAME])
+  }, [countryData.NAME])
 
   if (!show) return <></>
 
   return (
     <InfoBox>
-      <Text fontSize="2xl">{countryInfo.NAME}</Text>
+      <Text fontSize="2xl">{countryData.NAME}</Text>
       <DataContainer>
         {isLoading && <Spinner />}
         {isError && <Text>{"Country doesn't have any cases."}</Text>}
@@ -88,7 +88,7 @@ const CountryInfo = ({ countryInfo, setShowInfo, show }: CountryInfoProps) => {
       <Button
         colorScheme="blackAlpha"
         onClick={() => {
-          setShowInfo(false)
+          setShow(false)
         }}
       >
         Close
@@ -104,9 +104,6 @@ const InfoBox = styled(Container)`
   margin: 1rem 0;
 
   color: whitesmoke;
-  //position: fixed;
-  //left: calc(50% - 15rem);
-  //display: none;
 `
 
 const DataContainer = styled(Container)`
