@@ -61,6 +61,14 @@ const MapChartContainer = styled(Box)<{ height: string }>`
     transition: max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     margin-left: auto;
     margin-right: auto;
+
+    //background-color: #364765;
+    border-style: solid;
+    border-color: #364765;
+    border-width: 3px;
+    border-radius: 15px;
+    outline: none;
+    //padding: 1rem;
   }
 `
 
