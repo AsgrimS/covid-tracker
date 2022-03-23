@@ -579,6 +579,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@chakra-ui/icons@npm:^1.1.7":
+  version: 1.1.7
+  resolution: "@chakra-ui/icons@npm:1.1.7"
+  dependencies:
+    "@chakra-ui/icon": 2.0.5
+    "@types/react": ^17.0.15
+  peerDependencies:
+    "@chakra-ui/system": ">=1.0.0"
+    react: ">=16.8.6"
+  checksum: c76dd4f7c9cf2eeecfdf82fc373c5eed27a51db5e52e5b360eeacb1660e1869d6f20fbb754c53f5e47ca8b37d80a0c8b60c188dce3ef976e8ba1fbb14e34d4c7
+  languageName: node
+  linkType: hard
+
 "@chakra-ui/image@npm:1.1.8":
   version: 1.1.8
   resolution: "@chakra-ui/image@npm:1.1.8"
@@ -987,7 +1000,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chakra-ui/system@npm:1.11.2":
+"@chakra-ui/system@npm:1.11.2, @chakra-ui/system@npm:^1.11.2":
   version: 1.11.2
   resolution: "@chakra-ui/system@npm:1.11.2"
   dependencies:
@@ -1639,6 +1652,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/react@npm:^17.0.15":
+  version: 17.0.42
+  resolution: "@types/react@npm:17.0.42"
+  dependencies:
+    "@types/prop-types": "*"
+    "@types/scheduler": "*"
+    csstype: ^3.0.2
+  checksum: 9a84374da1173901b5eba6b2dda9e70220842c8e70274628e5c93684fca59786b7f6215c93f492e34f8834983de096b2544f280c60da9b8fd4c3f20ffe7cc51e
+  languageName: node
+  linkType: hard
+
 "@types/scheduler@npm:*":
   version: 0.16.2
   resolution: "@types/scheduler@npm:0.16.2"
@@ -2255,7 +2279,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "covid-tracker@workspace:."
   dependencies:
+    "@chakra-ui/icons": ^1.1.7
     "@chakra-ui/react": ^1.8.6
+    "@chakra-ui/system": ^1.11.2
     "@emotion/react": ^11
     "@emotion/styled": ^11
     "@types/react": ^17.0.33

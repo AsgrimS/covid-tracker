@@ -38,15 +38,15 @@ const MapChart = ({ setCountryName, selectCountryCallback }: MapChartProps) => {
                   }}
                   style={{
                     default: {
-                      fill: "#D6D6DA",
+                      fill: "#A4ABBD",
                       outline: "none"
                     },
                     hover: {
-                      fill: "#F53",
+                      fill: "#90cdf4",
                       outline: "none"
                     },
                     pressed: {
-                      fill: "#E42",
+                      fill: "#90cdf4",
                       outline: "none"
                     }
                   }}

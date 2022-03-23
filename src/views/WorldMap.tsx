@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react"
+import styled from "@emotion/styled"
+import { Box, Flex, SlideFade } from "@chakra-ui/react"
 import ReactTooltip from "react-tooltip"
 
 import { CountryInfoData } from "../types"
 import MapChart from "../components/MapChart"
 import CountryInfo from "../components/CountryInfo"
-import styled from "@emotion/styled"
 
-type mapSizeType = "70vh" | "30vh"
+type mapSizeType = "70vh" | "40rem"
 
 const WorldMap = () => {
   const [countryName, setCountryName] = useState("")
   const [showInfo, setShowInfo] = useState(false)
   const [mapSize, setMapSize] = useState<mapSizeType>("70vh")
-  // const [lastCountryName, setLastCountryName] = useState("")
   const [selectedCountry, setSelectedCountry] = useState<CountryInfoData>({
     ISO_A3: "",
     NAME: ""
@@ -26,14 +26,14 @@ const WorldMap = () => {
 
   useEffect(() => {
     if (showInfo) {
-      setMapSize("30vh")
+      setMapSize("40rem")
     } else {
       setMapSize("70vh")
     }
   }, [showInfo])
 
   return (
-    <>
+    <Flex flexDir="column">
       <MapChartContainer height={mapSize}>
         <MapChart
           setCountryName={setCountryName}
@@ -41,16 +41,20 @@ const WorldMap = () => {
         />
       </MapChartContainer>
       <ReactTooltip>{countryName}</ReactTooltip>
-      <CountryInfo
-        countryData={selectedCountry}
-        setShow={setShowInfo}
-        show={showInfo}
-      />
-    </>
+      <CountryInfoBox>
+        <SlideFade
+          transition={{ enter: { duration: 0.3 } }}
+          offsetY="50vh"
+          in={showInfo}
+        >
+          <CountryInfo countryData={selectedCountry} setShow={setShowInfo} />
+        </SlideFade>
+      </CountryInfoBox>
+    </Flex>
   )
 }
 
-const MapChartContainer = styled.div<{ height: string }>`
+const MapChartContainer = styled(Box)<{ height: string }>`
   svg {
     max-width: 100%;
     max-height: ${(props) => props.height};
@@ -60,4 +64,10 @@ const MapChartContainer = styled.div<{ height: string }>`
   }
 `
 
+const CountryInfoBox = styled(Box)`
+  min-width: 35rem;
+  align-self: center;
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+`
 export default WorldMap

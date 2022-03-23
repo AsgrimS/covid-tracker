@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import { useQuery } from "react-query"
 import {
+  Box,
   Button,
-  Container,
   Spinner,
   Stat,
   StatGroup,
@@ -19,10 +19,9 @@ import { fetchCountryInfo } from "../requests"
 interface CountryInfoProps {
   countryData: CountryInfoData
   setShow: (value: boolean) => void
-  show: boolean
 }
 
-const CountryInfo = ({ countryData, setShow, show }: CountryInfoProps) => {
+const CountryInfo = ({ countryData, setShow }: CountryInfoProps) => {
   const [ActiveCasesRatioText, setActiveCasesRatioText] = useState("")
 
   const { data, refetch, isLoading, isSuccess, isError } = useQuery(
@@ -55,13 +54,15 @@ const CountryInfo = ({ countryData, setShow, show }: CountryInfoProps) => {
       .catch(console.error)
   }, [countryData.NAME])
 
-  if (!show) return <></>
-
   return (
     <InfoBox>
       <Text fontSize="2xl">{countryData.NAME}</Text>
       <DataContainer>
-        {isLoading && <Spinner />}
+        {isLoading && (
+          <Box textAlign="center">
+            <Spinner size="xl" />
+          </Box>
+        )}
         {isError && <Text>{"Country doesn't have any cases."}</Text>}
         {isSuccess && (
           <StatGroup>
@@ -86,7 +87,7 @@ const CountryInfo = ({ countryData, setShow, show }: CountryInfoProps) => {
         )}
       </DataContainer>
       <Button
-        colorScheme="blackAlpha"
+        colorScheme="blue"
         onClick={() => {
           setShow(false)
         }}
@@ -97,16 +98,13 @@ const CountryInfo = ({ countryData, setShow, show }: CountryInfoProps) => {
   )
 }
 
-const InfoBox = styled(Container)`
-  background-color: #4e536c;
+const InfoBox = styled(Box)`
+  background-color: #364765;
   border-radius: 15px;
   padding: 1rem;
-  margin: 1rem 0;
-
-  color: whitesmoke;
 `
 
-const DataContainer = styled(Container)`
+const DataContainer = styled(Box)`
   padding: 1rem 0;
 `
 
