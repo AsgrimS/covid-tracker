@@ -10,11 +10,10 @@ import { CountryInfoData } from "../types"
 import { geoUrl } from "../settings"
 
 interface MapChartProps {
-  setCountryName: (value: string) => void
   selectCountryCallback: (value: CountryInfoData) => void
 }
 
-const MapChart = ({ setCountryName, selectCountryCallback }: MapChartProps) => {
+const MapChart = ({ selectCountryCallback }: MapChartProps) => {
   return (
     <>
       <ComposableMap data-tip="" projectionConfig={{ scale: 200 }}>
@@ -28,13 +27,6 @@ const MapChart = ({ setCountryName, selectCountryCallback }: MapChartProps) => {
                   onClick={() => {
                     const { NAME, ISO_A3 } = geo.properties
                     selectCountryCallback({ NAME, ISO_A3 })
-                  }}
-                  onMouseEnter={() => {
-                    const { NAME } = geo.properties
-                    setCountryName(NAME)
-                  }}
-                  onMouseLeave={() => {
-                    setCountryName("")
                   }}
                   style={{
                     default: {

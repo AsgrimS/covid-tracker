@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useQuery } from "react-query"
 import {
   Box,
+  Flex,
   Button,
   Spinner,
   Stat,
@@ -55,38 +56,43 @@ const CountryInfo = ({ countryData, setShow }: CountryInfoProps) => {
   }, [countryData.NAME])
 
   return (
-    <InfoBox>
+    <Flex
+      flexDir="column"
+      bgColor="#364765"
+      borderRadius="15px"
+      p="1rem"
+      height="full"
+    >
       <Text fontSize="2xl">{countryData.NAME}</Text>
-      <DataContainer>
-        {isLoading && (
-          <Box textAlign="center">
-            <Spinner size="xl" />
-          </Box>
-        )}
-        {isError && <Text>{"Country doesn't have any cases."}</Text>}
-        {isSuccess && (
-          <StatGroup>
-            <CountryStat>
-              <StatLabel>Active cases</StatLabel>
-              <StatNumber>{data.active}</StatNumber>
-              <StatHelpText>{ActiveCasesRatioText}</StatHelpText>
-            </CountryStat>
-            <CountryStat>
-              <StatLabel>Total cases</StatLabel>
-              <StatNumber>{data.cases}</StatNumber>
-            </CountryStat>
-            <CountryStat>
-              <StatLabel>Population</StatLabel>
-              <StatNumber>{data.population}</StatNumber>
-            </CountryStat>
-            <CountryStat>
-              <StatLabel>Deaths</StatLabel>
-              <StatNumber>{data.deaths}</StatNumber>
-            </CountryStat>
-          </StatGroup>
-        )}
-      </DataContainer>
+      {isLoading && (
+        <Box textAlign="center" my="auto">
+          <Spinner size="xl" />
+        </Box>
+      )}
+      {isError && <Text>{"Country doesn't have any cases."}</Text>}
+      {isSuccess && (
+        <StatGroup>
+          <CountryStat>
+            <StatLabel>Active cases</StatLabel>
+            <StatNumber>{data.active}</StatNumber>
+            <StatHelpText>{ActiveCasesRatioText}</StatHelpText>
+          </CountryStat>
+          <CountryStat>
+            <StatLabel>Total cases</StatLabel>
+            <StatNumber>{data.cases}</StatNumber>
+          </CountryStat>
+          <CountryStat>
+            <StatLabel>Population</StatLabel>
+            <StatNumber>{data.population}</StatNumber>
+          </CountryStat>
+          <CountryStat>
+            <StatLabel>Deaths</StatLabel>
+            <StatNumber>{data.deaths}</StatNumber>
+          </CountryStat>
+        </StatGroup>
+      )}
       <Button
+        marginTop="auto"
         colorScheme="blue"
         onClick={() => {
           setShow(false)
@@ -94,22 +100,13 @@ const CountryInfo = ({ countryData, setShow }: CountryInfoProps) => {
       >
         Close
       </Button>
-    </InfoBox>
+    </Flex>
   )
 }
 
-const InfoBox = styled(Box)`
-  background-color: #364765;
-  border-radius: 15px;
-  padding: 1rem;
-`
-
-const DataContainer = styled(Box)`
-  padding: 1rem 0;
-`
-
 const CountryStat = styled(Stat)`
   margin-right: 1rem;
+  min-width: 30%;
 `
 
 export default CountryInfo
