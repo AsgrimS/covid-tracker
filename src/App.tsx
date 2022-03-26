@@ -25,19 +25,11 @@ function App() {
   return (
     <Container>
       <StyledFlex flexDir="column" h="100vh" py="1rem" alignItems="center">
-        <StyledFade
-          in={!showInfo}
-          transition={{ enter: { duration: animationsDuration } }}
-        >
+        <StyledFade in={!showInfo} transition={{ enter: { duration: animationsDuration } }}>
           <Text fontSize="xl">Choose country</Text>
         </StyledFade>
         <VStack w="full" h="full">
-          <MapChartBox
-            my="auto"
-            border="#364765 3px solid"
-            borderRadius="15px"
-            w="full"
-          >
+          <MapChartBox my="auto" border="#364765 3px solid" borderRadius="15px" w="full">
             <MapChart selectCountryCallback={selectCountryCallback} />
           </MapChartBox>
           <DynamicSlideFade in={showInfo} showInfo={showInfo}>

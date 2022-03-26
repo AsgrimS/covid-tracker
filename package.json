@@ -31,6 +31,7 @@
     "react-query": "^3.34.16",
     "react-simple-maps": "^2.3.0",
     "react-tooltip": "^4.2.21",
+    "recharts": "^2.1.9",
     "styled-components": "^5.3.3"
   },
   "devDependencies": {

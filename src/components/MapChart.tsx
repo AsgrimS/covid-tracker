@@ -1,10 +1,5 @@
 import { memo } from "react"
-import {
-  ZoomableGroup,
-  ComposableMap,
-  Geographies,
-  Geography
-} from "react-simple-maps"
+import { ZoomableGroup, ComposableMap, Geographies, Geography } from "react-simple-maps"
 
 import { CountryInfoData } from "../types"
 import { geoUrl } from "../settings"
